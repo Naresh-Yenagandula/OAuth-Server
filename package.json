@@ -16,6 +16,7 @@
     "express-session": "^1.17.2",
     "passport": "^0.4.1",
     "passport-github": "^1.1.0",
-    "passport-twitter": "^1.0.4"
+    "passport-twitter": "^1.0.4",
+    "memorystore": "^1.6.6"
   }
 }
