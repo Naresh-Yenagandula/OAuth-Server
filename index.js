@@ -5,6 +5,7 @@ const cors = require("cors")
 const session= require("express-session")
 const GithubStrategy = require("passport-github").Strategy;
 const TwitterStrategy = require("passport-twitter").Strategy;
+var MemoryStore = require('memorystore')(session);
 let user={}
 dotenv.config()
 
@@ -12,8 +13,12 @@ dotenv.config()
 const app = express()
 app.use(express.json())
 app.use(session({
+    cookie:{maxAge:86400000},
+    store: new MemoryStore({
+        checkPeriod:86400000
+    }),
     secret:"secreasdshasdsd",
-    resave:true,
+    resave:false,
     saveUninitialized:true
 }))
 app.use(cors({origin:"http://localhost:3000",credentials:true}))
