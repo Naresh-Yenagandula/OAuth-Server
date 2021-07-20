@@ -12,13 +12,18 @@ dotenv.config()
 
 const app = express()
 app.use(express.json())
+app.set('trust proxy',1)
 app.use(session({
-    cookie:{maxAge:86400000},
+    cookie:{
+        sameSite:"none",
+        secure:true,
+        maxAge:86400000
+    },
     store: new MemoryStore({
         checkPeriod:86400000
     }),
     secret:"secreasdshasdsd",
-    resave:false,
+    resave:true,
     saveUninitialized:true
 }))
 app.use(cors({origin:"http://localhost:3000",credentials:true}))
